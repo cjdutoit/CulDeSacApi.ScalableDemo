@@ -3,7 +3,6 @@
 // Licensed under the MIT License.
 // ---------------------------------------------------------------
 
-using System;
 using System.Threading.Tasks;
 using CulDeSacApi.Brokers.Storages;
 using CulDeSacApi.Models.Students;
@@ -18,6 +17,6 @@ namespace CulDeSacApi.Services.Foundations
             this.storageBroker = storageBroker;
 
         public async ValueTask<Student> AddStudentAsync(Student student) =>
-            throw new NotImplementedException();
+            await this.storageBroker.InsertStudentAsync(student);
     }
 }

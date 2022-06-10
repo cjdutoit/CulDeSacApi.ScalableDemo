@@ -3,8 +3,10 @@
 // Licensed under the MIT License.
 // ---------------------------------------------------------------
 
+using System;
 using System.Threading.Tasks;
 using CulDeSacApi.Models.LibraryAccounts;
+using CulDeSacApi.Models.LibraryCards;
 using FluentAssertions;
 using Force.DeepCloner;
 using Moq;
@@ -32,9 +34,20 @@ namespace CulDeSacApi.Tests.Unit.Services.Orchestrations.LibraryAccounts
 
             var mockSequence = new MockSequence();
 
+            var expectedInputLibraryCard = new LibraryCard
+            {
+                Id = Guid.NewGuid(),
+                LibraryAccountId = addedLibraryAccount.Id
+            };
+
             this.libraryAccountServiceMock.InSequence(mockSequence).Setup(service =>
                 service.AddLibraryAccountAsync(inputLibraryAccount))
                     .ReturnsAsync(addedLibraryAccount);
+
+            this.libraryCardServiceMock.InSequence(mockSequence).Setup(service =>
+                service.AddLibraryCardAsync(It.Is(
+                    SameLibraryCardAs(expectedInputLibraryCard))))
+                        .ReturnsAsync(expectedInputLibraryCard);
 
             // when
             LibraryAccount actualLibraryAccount =
@@ -48,7 +61,13 @@ namespace CulDeSacApi.Tests.Unit.Services.Orchestrations.LibraryAccounts
                 service.AddLibraryAccountAsync(inputLibraryAccount),
                     Times.Once);
 
+            this.libraryCardServiceMock.Verify(broker =>
+                broker.AddLibraryCardAsync(It.Is(SameLibraryCardAs(
+                    expectedInputLibraryCard))),
+                        Times.Once);
+
             this.libraryAccountServiceMock.VerifyNoOtherCalls();
+            this.libraryCardServiceMock.VerifyNoOtherCalls();
         }
     }
 }

@@ -6,7 +6,7 @@
 using System.Threading.Tasks;
 using CulDeSacApi.Models.Students;
 
-namespace CulDeSacApi.Services.Foundations
+namespace CulDeSacApi.Services.Foundations.Students
 {
     public interface IStudentService
     {

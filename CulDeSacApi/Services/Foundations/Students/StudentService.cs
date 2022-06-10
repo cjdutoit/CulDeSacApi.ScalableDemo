@@ -8,7 +8,7 @@ using CulDeSacApi.Brokers.Events;
 using CulDeSacApi.Brokers.Storages;
 using CulDeSacApi.Models.Students;
 
-namespace CulDeSacApi.Services.Foundations
+namespace CulDeSacApi.Services.Foundations.Students
 {
     public class StudentService : IStudentService
     {
@@ -23,8 +23,8 @@ namespace CulDeSacApi.Services.Foundations
 
         public async ValueTask<Student> AddStudentAsync(Student student)
         {
-            Student createdStudent = await this.storageBroker.InsertStudentAsync(student);
-            await this.eventBroker.PublishStudentAddEventAsync(createdStudent);
+            Student createdStudent = await storageBroker.InsertStudentAsync(student);
+            await eventBroker.PublishStudentAddEventAsync(createdStudent);
 
             return createdStudent;
         }

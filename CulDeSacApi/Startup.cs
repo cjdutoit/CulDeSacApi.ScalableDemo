@@ -5,7 +5,7 @@
 
 using CulDeSacApi.Brokers.Events;
 using CulDeSacApi.Brokers.Storages;
-using CulDeSacApi.Services.Foundations;
+using CulDeSacApi.Services.Foundations.Students;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

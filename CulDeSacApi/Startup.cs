@@ -3,6 +3,8 @@
 // Licensed under the MIT License.
 // ---------------------------------------------------------------
 
+using CulDeSacApi.Brokers.Storages;
+using CulDeSacApi.Services.Foundations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,8 +25,11 @@ namespace CulDeSacApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
+            services.AddDbContext<StorageBroker>();
+            services.AddTransient<IStorageBroker, StorageBroker>();
+            services.AddTransient<IStudentService, StudentService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CulDeSacApi", Version = "v1" });

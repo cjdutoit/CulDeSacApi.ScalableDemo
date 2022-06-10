@@ -6,6 +6,7 @@
 using System;
 using System.Threading.Tasks;
 using CulDeSacApi.Models.LibraryAccounts;
+using CulDeSacApi.Models.LibraryCards;
 using CulDeSacApi.Services.Foundations.LibraryAccounts;
 using CulDeSacApi.Services.Foundations.LibraryCards;
 using CulDeSacApi.Services.Foundations.StudentEvents;
@@ -50,7 +51,27 @@ namespace CulDeSacApi.Services.Orchestrations.LibraryAccounts
                 await this.libraryAccountService
                     .AddLibraryAccountAsync(libraryAccount);
 
+            await CreateLibraryCardAsync(libraryAccount);
+
             return addedLibraryAccount;
+        }
+
+        private async Task CreateLibraryCardAsync(LibraryAccount libraryAccount)
+        {
+            LibraryCard inputLibraryCard =
+                CreateLibraryCard(libraryAccount.Id);
+
+            await this.libraryCardService
+                .AddLibraryCardAsync(inputLibraryCard);
+        }
+
+        private static LibraryCard CreateLibraryCard(Guid libraryAccountId)
+        {
+            return new LibraryCard
+            {
+                Id = Guid.NewGuid(),
+                LibraryAccountId = libraryAccountId
+            };
         }
     }
 }

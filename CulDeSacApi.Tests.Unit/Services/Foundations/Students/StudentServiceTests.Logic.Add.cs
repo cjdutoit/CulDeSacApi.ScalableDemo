@@ -38,7 +38,12 @@ namespace CulDeSacApi.Tests.Unit.Services.Foundations.Students
                 broker.InsertStudentAsync(inputStudent),
                     Times.Once);
 
+            this.eventBrokerMock.Verify(broker =>
+                broker.PublishStudentAddEventAsync(insertedStudent),
+                    Times.Once);
+
             this.storageBrokerMock.VerifyNoOtherCalls();
+            this.eventBrokerMock.VerifyNoOtherCalls();
         }
     }
 }

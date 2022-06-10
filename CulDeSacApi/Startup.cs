@@ -3,6 +3,7 @@
 // Licensed under the MIT License.
 // ---------------------------------------------------------------
 
+using CulDeSacApi.Brokers.Events;
 using CulDeSacApi.Brokers.Storages;
 using CulDeSacApi.Services.Foundations;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,7 @@ namespace CulDeSacApi
             services.AddControllers();
             services.AddDbContext<StorageBroker>();
             services.AddTransient<IStorageBroker, StorageBroker>();
+            services.AddTransient<IEventBroker, EventBroker>();
             services.AddTransient<IStudentService, StudentService>();
 
             services.AddSwaggerGen(c =>

@@ -18,6 +18,6 @@ namespace CulDeSacApi.Services.Foundations.StudentEvents
             this.eventBroker = eventBroker;
 
         public void SubscribeToStudentAddEvent(Func<Student, ValueTask<Student>> studentEventHandler) =>
-            throw new NotImplementedException();
+            this.eventBroker.SubscribeToStudentAddEvent(studentEventHandler);
     }
 }

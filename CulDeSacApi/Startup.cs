@@ -6,6 +6,7 @@
 using CulDeSacApi.Brokers.Events;
 using CulDeSacApi.Brokers.Storages;
 using CulDeSacApi.Services.Foundations.Students;
+using CulDeSacApi.Services.Orchestrations.LibraryAccounts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -47,6 +48,7 @@ namespace CulDeSacApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CulDeSacApi v1"));
             }
 
+            app.ApplicationServices.GetService<ILibraryAccountOrchestrationService>().ListenToLocalStudentEvent();
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();

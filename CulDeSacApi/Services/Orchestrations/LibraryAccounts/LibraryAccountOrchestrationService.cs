@@ -42,7 +42,11 @@ namespace CulDeSacApi.Services.Orchestrations.LibraryAccounts
 
         public async ValueTask<LibraryAccount> CreateLibraryAccountAsync(LibraryAccount libraryAccount)
         {
-            throw new System.NotImplementedException();
+            LibraryAccount addedLibraryAccount =
+                await this.libraryAccountService
+                    .AddLibraryAccountAsync(libraryAccount);
+
+            return addedLibraryAccount;
         }
     }
 }

@@ -5,6 +5,8 @@
 
 using CulDeSacApi.Brokers.Events;
 using CulDeSacApi.Brokers.Storages;
+using CulDeSacApi.Services.Foundations.LibraryAccounts;
+using CulDeSacApi.Services.Foundations.StudentEvents;
 using CulDeSacApi.Services.Foundations.Students;
 using CulDeSacApi.Services.Orchestrations.LibraryAccounts;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +34,9 @@ namespace CulDeSacApi
             services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddTransient<IEventBroker, EventBroker>();
             services.AddTransient<IStudentService, StudentService>();
+            services.AddTransient<IStudentEventService, StudentEventService>();
+            services.AddTransient<ILibraryAccountService, LibraryAccountService>();
+            services.AddTransient<ILibraryAccountOrchestrationService, LibraryAccountOrchestrationService>();
 
             services.AddSwaggerGen(c =>
             {

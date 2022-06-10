@@ -3,7 +3,6 @@
 // Licensed under the MIT License.
 // ---------------------------------------------------------------
 
-using System;
 using System.Threading.Tasks;
 using CulDeSacApi.Brokers.Storages;
 using CulDeSacApi.Models.LibraryCards;
@@ -18,6 +17,6 @@ namespace CulDeSacApi.Services.Foundations.LibraryCards
             this.storageBroker = storageBroker;
 
         public async ValueTask<LibraryCard> AddLibraryCardAsync(LibraryCard libraryCard) =>
-            throw new NotImplementedException();
+            await this.storageBroker.InsertLibraryCardAsync(libraryCard);
     }
 }

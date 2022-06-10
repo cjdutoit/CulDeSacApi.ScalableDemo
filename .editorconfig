@@ -5,6 +5,8 @@
 guidelines = 120
 
 [*.cs]
+guidelines = 120
+
 #Formatting - organize using options
 
 #sort System.* using directives alphabetically, and place them before other usings

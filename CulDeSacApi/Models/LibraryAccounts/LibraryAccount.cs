@@ -4,14 +4,15 @@
 // ---------------------------------------------------------------
 
 using System;
-using CulDeSacApi.Models.LibraryAccounts;
+using CulDeSacApi.Models.Students;
 
-namespace CulDeSacApi.Models.Students
+namespace CulDeSacApi.Models.LibraryAccounts
 {
-    public class Student
+    public class LibraryAccount
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public LibraryAccount LibraryAccount { get; set; }
+
+        public Guid StudentId { get; set; }
+        public Student Student { get; set; }
     }
 }

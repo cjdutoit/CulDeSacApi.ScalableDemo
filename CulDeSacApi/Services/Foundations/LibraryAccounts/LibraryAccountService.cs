@@ -3,7 +3,6 @@
 // Licensed under the MIT License.
 // ---------------------------------------------------------------
 
-using System;
 using System.Threading.Tasks;
 using CulDeSacApi.Brokers.Storages;
 using CulDeSacApi.Models.LibraryAccounts;
@@ -18,6 +17,6 @@ namespace CulDeSacApi.Services.Foundations.LibraryAccounts
             this.storageBroker = storageBroker;
 
         public async ValueTask<LibraryAccount> AddLibraryAccountAsync(LibraryAccount libraryAccount) =>
-            throw new NotImplementedException();
+            await this.storageBroker.InsertLibraryAccountAsync(libraryAccount);
     }
 }
